@@ -29,32 +29,28 @@ def game_answers(choosen_level):
         answer = ["Japan", "Tokyo", "Kyoto", "sushi", "anime", "30"]
     return answer
 
-#Takes the blanks and the word trying to be imputted, sees if it matches
-#anything in the list, and returns the blank if the answer isnt right. If it is, it will 
-#return the answer
-def word_in_pos(answer_number, game_answers):
-    word = answer_number
-    for word in game_answers:
-        if word == "__" + str(answer_number) + "__":
-            return word
+#Goes through the quiz being taken and makes each word an individual string,
+#checks each string for underscores and the quiz question number the user is answering,
+#then returns the quiz question number that the user is going to answer. If the 
+#underscores and quiz question number are not found, nothing happens.
+def word_in_pos(answer_number, split_question):
+    number = answer_number
+    for number in split_question:
+        if number == "__" + str(answer_number) + "__":
+            print number
+            return number
         else:
             return None
 
-#Fills in the blanks of the question with the user's answer
+#Fills in the place of the quiz question number that the user is answering
+#with the correct answer of the question being asked. The underscores remain there.
 def answering_questions(question, user_answer, answer_number):
-    replaced = []
-    game_answers = question.split()
-    word = user_answer
-    for word in game_answers:
-        replacement = word_in_pos(answer_number, game_answers)
-        if replacement != None:
-            print 'here i am figure it out alone baby cakes'
-            word = word.replace(replacement, user_answer)
-            replaced.append(word)
-        else:
-            replaced.append(word)
-    final_answer = " ".join(replaced)
-    return final_answer
+    split_question = question.split()
+    number_in_question = word_in_pos(answer_number, split_question)
+    if number_in_question == None:
+        number = str(answer_number)
+        question_with_answer = question.replace(number, user_answer)
+    return question_with_answer
 
 #Quiz operations
 def play_game():
@@ -63,8 +59,8 @@ def play_game():
     solutions = game_answers(choosen_level)
     answers_left = 4
     print "You will get " + str(len(solutions)) + " guesses per problem."
-    answer_number = 1
     print question
+    answer_number = 1
     while answer_number <= len(solutions):
         user_answer = raw_input("Type your best guess for __"+ str(answer_number) + "__. \n>>")
         index = answer_number - 1
