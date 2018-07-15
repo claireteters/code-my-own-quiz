@@ -12,7 +12,7 @@ def set_game_difficulty():
 #After selecting which game they woud like to play
 def game_questions(choosen_level):
     if choosen_level == "easy":
-        quiz = '''In The Office, there are numerous characters to keep track of. __1__ is the boss of the Scranton branch of Dunder Mifflin. __1__'s number one assistant to the regional manager is __2__, who is also a beet farmer on the side. __3__ is the receptionist who is regularly visited by __4__. __4__ is completely in love with __3__, which makes for an excelent story line throughout the show.'''
+        quiz = '''In The Office, there are numerous characters to keep track of. __1__ is the boss of the Scranton branch of Dunder Mifflin. __1__'s number one assistant to the regional manager is __2__, who is also a beet farmer on the side. __3__ is the receptionist who is regularly visited by __4__ who is completely in love with __3__, which makes for an excelent story line throughout the show.'''
     elif choosen_level == "medium":
         quiz = '''In The Office, Michael makes a call to the office screaming about how he __1__ on his George Foreman Grill because he likes to wake up to the smell of bacon in the morning. Dwight decides to save the day by going to his house to get him, and while doing so, __2__ into a pole giving himself a __3__. We know this because later in the day, he starts showing symptoms like typing the same word multiple times on his computer screen, and not knowing hes raising his hand durring a __4__.'''
     elif choosen_level == "hard":
@@ -37,6 +37,12 @@ def word_in_pos(answer_number, split_question):
     number = answer_number
     for number in split_question:
         if number == "__" + str(answer_number) + "__":
+            return number
+        elif number == "__" + str(answer_number) + "__.":
+            return number
+        elif number == "__" + str(answer_number) + "__,":
+            return number
+        elif number == "__" + str(answer_number) + "__!":
             return number
     return None 
 
@@ -67,6 +73,6 @@ def play_game():
             answer_number += 1
         else:
             print "Incorrect. Try again!\n"
-    print "Nice! You Passed the " + choosen_level + " level. You rock!"
+    print "Nice! You passed the " + choosen_level + " level. You rock!"
 
 play_game()
