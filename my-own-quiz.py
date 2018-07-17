@@ -2,25 +2,31 @@
 def set_game_difficulty():
     print "Let's take a quiz about the hit TV series, 'The Office'!\n"
     choosen_level = raw_input("Please type a game difficulty of easy, medium, or hard: ")
-    if choosen_level == "easy" or choosen_level == "medium" or choosen_level == "hard":
-        print "Let's do a " + choosen_level + " level!\n"
-        print "Your quiz begins below!\n"
-    else:
-        print "Please imput a valid answer of easy, medium, or hard."
+    # if choosen_level == "easy" or choosen_level == "medium" or choosen_level == "hard":
+    #     print "Let's do a " + choosen_level + " level!\n"
+    #     print "Your quiz begins below!\n"
+    while choosen_level not in ("easy", "medium", "hard"):
+        choosen_level = raw_input("Please imput a valid answer of easy, medium, or hard: \n")
+    print "Let's do the " + choosen_level + " level!\n"
+    print "Your quiz begins below!\n"
     return choosen_level
 
 #After selecting which game they woud like to play
 def game_questions(choosen_level):
+    quiz = choosen_level
+    global quiz
     if choosen_level == "easy":
         quiz = '''In The Office, there are numerous characters to keep track of. __1__ is the boss of the Scranton branch of Dunder Mifflin. __1__'s number one assistant to the regional manager is __2__, who is also a beet farmer on the side. __3__ is the receptionist who is regularly visited by __4__ who is completely in love with __3__, which makes for an excelent story line throughout the show.'''
     elif choosen_level == "medium":
         quiz = '''In The Office, Michael makes a call to the office screaming about how he __1__ on his George Foreman Grill because he likes to wake up to the smell of bacon in the morning. Dwight decides to save the day by going to his house to get him, and while doing so, __2__ into a pole giving himself a __3__. We know this because later in the day, he starts showing symptoms like typing the same word multiple times on his computer screen, and not knowing hes raising his hand durring a __4__.'''
     elif choosen_level == "hard":
-        quiz = '''On the episode "Goodbye Michael" of The Office, the group __1__ to him. Michael is caught off gaurd by this and whispers to himself, "__2__". They tell him that he has worked there for so long, that it's like watching the movie 'Die Hard' __3__ times. Meredith gets a solo saying you hit me with your __4__, and Creed says I __5__ you when you __6__. They all join together near the end and tell Michael, remember to __7__!'''
+        quiz = '''On the episode "Goodbye Michael" of The Office, the group __1__ to him. Michael is caught off gaurd by this and whispers to himself, " __2__ ". They tell him that he has worked there for so long, that it's like watching the movie 'Die Hard' __3__ times. Meredith gets a solo saying you hit me with your __4__, and Creed says I __5__ you when you __6__. They all join together near the end and tell Michael, remember to __7__!'''
     return quiz
         
 #Depending on which level they select, the answers of that game are here.
 def game_answers(choosen_level):
+    answer = choosen_level
+    global answer
     if choosen_level == "easy":
         answer = ["Michael", "Dwight", "Pam", "Jim"]
     elif choosen_level == "medium":
